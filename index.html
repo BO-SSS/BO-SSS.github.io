@@ -19,12 +19,12 @@
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .logo {
+        .logo a {
+            text-decoration: none;  /* Remove the underline */
+            color: white !important; /* Set the text color to white */
             font-size: 24px;
             font-weight: bold;
-        }
-
+         }
         .nav-links {
             list-style: none;
             display: flex;
@@ -54,7 +54,7 @@
                 position: absolute;
                 top: 60px;
                 left: 0;
-                background-color: #333;
+                background-color: #0047AB;
                 padding: 20px;
             }
 
@@ -86,12 +86,11 @@
 <body>
 
 <header>
-    <div class="logo">BOSSS</div>
+    <div class="logo"><a href="https://bo-sss.github.io/">BO-SSS</a></div>
     <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">Videos</a></li>
-        <li><a href="#services">Music</a></li>
-        <li><a href="#contact">GitHub Code</a></li>
+        <li><a href="#about"><a href="url">Video</a></a></li>
+        <li><a href="#services"><a href="url">Music</a></a></li>
+        <li><a href="#contact"><a href="url">Github Code</a></a></li>
     </ul>
     <div class="hamburger" onclick="toggleMenu()">
         <span></span>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thomas & Friends Theme Song | BO-SSS</title>
+    <title>BOSSS</title>
     <style>
         body {
             margin: 0;
@@ -76,20 +76,6 @@
             font-size: 32px;
             font-weight: bold;
             color: #333;
-            text-align: left;
-            background-color: #ffffff;
-            padding: 20px 25px; /* 25px padding on left and right */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-left: 25px; /* 25px gap from the left */
-            margin-right: 25px; /* 25px gap from the right */
-        }
-
-        #video-subtitle {
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #636363;
             text-align: left;
             background-color: #ffffff;
             padding: 20px 25px; /* 25px padding on left and right */
@@ -182,8 +168,8 @@
 <!-- Video Section -->
 <video id="videoPlayer" controls controlsList="nodownload" oncontextmenu="return false;">
     <source src="https://files.catbox.moe/9ny0sz.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+<!-- Replace https://files.catbox.moe/9ny0sz.mp4 with your mp4 link. It can be internally stored in the folder or somewhere else on yhe server or internet. -->
+    </video>
 
 <!-- Video Title Section -->
 <div id="video-title">
@@ -215,6 +201,25 @@
     const currentDate = new Date().toLocaleDateString();
     document.getElementById("date").value = currentDate;
 
+    // Function to load comments from localStorage
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem("comments")) || [];
+        const commentContainer = document.getElementById("comment-container");
+        commentContainer.innerHTML = ""; // Clear previous comments
+        comments.forEach(comment => {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment");
+            commentElement.innerHTML = `
+                <div class="name-date">${comment.name} - ${comment.date}</div>
+                <div class="text">${comment.comment}</div>
+            `;
+            commentContainer.appendChild(commentElement);
+        });
+    }
+
+    // Load comments when the page loads
+    window.onload = loadComments;
+
     // Disable right-click on the video element (additional measure)
     document.getElementById("videoPlayer").addEventListener("contextmenu", function(event) {
         event.preventDefault();
@@ -232,17 +237,19 @@
             return;
         }
 
-        // Step 3: Create a new comment element
+        // Step 3: Save the comment to localStorage
+        const comments = JSON.parse(localStorage.getItem("comments")) || [];
+        comments.push({ name, date, comment });
+        localStorage.setItem("comments", JSON.stringify(comments));
+
+        // Step 4: Create a new comment element and display it
         const commentContainer = document.getElementById("comment-container");
         const commentElement = document.createElement("div");
         commentElement.classList.add("comment");
-
         commentElement.innerHTML = `
             <div class="name-date">${name} - ${date}</div>
             <div class="text">${comment}</div>
         `;
-
-        // Step 4: Append the comment to the comment container
         commentContainer.appendChild(commentElement);
 
         // Step 5: Clear the fields after posting the comment

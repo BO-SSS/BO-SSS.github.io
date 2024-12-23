@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSSS</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Header styling */
+        header {
+            background-color: #0047AB;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure header stays on top */
+            box-sizing: border-box;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: white !important;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Navigation links styling */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f1c40f;
+        }
+
+        /* Video styling */
+        video {
+            width: calc(100% - 50px); /* Full width minus 25px margin on both sides */
+            margin-left: 25px; /* 25px gap from the left */
+            margin-right: 25px; /* 25px gap from the right */
+            height: auto;
+            margin-top: 70px; /* Add margin to offset the fixed header */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Video Title Styling */
+        #video-title {
+            margin-top: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+            background-color: #ffffff;
+            padding: 20px 25px; /* 25px padding on left and right */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 25px; /* 25px gap from the left */
+            margin-right: 25px; /* 25px gap from the right */
+        }
+
+        /* Styling for the comment box section */
+        #comment-section {
+            background-color: #ffffff;
+            padding: 20px 25px; /* 25px padding on left and right */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px; /* Space between the title and the comment box */
+            margin-left: 25px; /* 25px gap from the left */
+            margin-right: 25px; /* 25px gap from the right */
+        }
+
+        #comment-section h1 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #0047AB;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #003399;
+        }
+
+        #comment-container {
+            margin-top: 20px;
+        }
+
+        .comment {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .comment .name-date {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #0047AB;
+        }
+
+        .comment .text {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><a href="https://bo-sss.github.io/">BO-SSS</a></div>
+    <!-- Regular navigation links -->
+    <ul class="nav-links">
+        <li><a href="https://bo-sss.github.io/video/index.html">Video</a></li>
+        <li><a href="https://bo-sss.github.io/music/index.html">Music</a></li>
+        <li><a href="https://github.com/BO-SSS/BO-SSS.github.io/tree/main">Github Code</a></li>
+    </ul>
+</header>
+
+<!-- Add space for fixed header -->
+<div style="height: 100px;"></div>
+
+<!-- Video Section -->
+<video id="videoPlayer" controls controlsList="nodownload" oncontextmenu="return false;">
+    <source src="https://files.catbox.moe/t9ckrv.mp3" type="audio/mp3">
+<!-- Replace https://files.catbox.moe/t9ckrv.mp3 with your mp3 link. It can be internally stored in the folder or somewhere else on yhe server or internet. -->
+    </video>
+
+<!-- Video Title Section -->
+<div id="video-title">
+    <h2>Thomas & Friends Themes Song</h2>
+</div>
+
+<!-- Comment Box Section -->
+<div id="comment-section">
+    <h1>Please add your comment (They Don't Work Right Now)</h1>
+
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label for="date">Date:</label>
+    <input type="text" id="date" value="" readonly>
+
+    <label for="comment">Your Comment:</label>
+    <textarea id="comment" placeholder="Write your comment..." required></textarea>
+
+    <button id="btn-post">Post Comment</button>
+</div>
+
+<div id="comment-container">
+    <!-- Default/Pre-stored comments -->
+    <div class="comment"></div>
+        <div class="name-date">John Doe - 3/21/2024</div>
+        <div class="text">Great video!</div>
+    </div>
+</div>
+
+<script>
+    // Get the current date and prefill the date input
+    const currentDate = new Date().toLocaleDateString();
+    document.getElementById("date").value = currentDate;
+
+    // Load comments from JSON file
+    async function loadComments() {
+        try {
+            const response = await fetch('comments.json');
+            const data = await response.json();
+            const commentContainer = document.getElementById("comment-container");
+            
+            data.comments.forEach(comment => {
+                const commentElement = document.createElement("div");
+                commentElement.classList.add("comment");
+                commentElement.innerHTML = `
+                    <div class="name-date">${comment.name} - ${comment.date}</div>
+                    <div class="text">${comment.text}</div>
+                `;
+                commentContainer.appendChild(commentElement);
+            });
+        } catch (error) {
+            console.error('Error loading comments:', error);
+        }
+    }
+
+    // Load comments when page loads
+    window.onload = loadComments;
+
+    // Add event listener to the "Post" button
+    document.getElementById("btn-post").addEventListener("click", function () {
+        const name = document.getElementById("name").value;
+        const date = document.getElementById("date").value;
+        const comment = document.getElementById("comment").value;
+
+        if (name === "" || comment === "") {
+            alert("Please enter both your name and comment.");
+            return;
+        }
+
+        // Create and display the comment
+        const commentContainer = document.getElementById("comment-container");
+        const commentElement = document.createElement("div");
+        commentElement.classList.add("comment");
+        commentElement.innerHTML = `
+            <div class="name-date">${name} - ${date}</div>
+            <div class="text">${comment}</div>
+        `;
+        commentContainer.insertBefore(commentElement, commentContainer.firstChild);
+
+        // Clear the input fields
+        document.getElementById("name").value = "";
+        document.getElementById("comment").value = "";
+    });
+</script>
+
+</body>
+</html>
